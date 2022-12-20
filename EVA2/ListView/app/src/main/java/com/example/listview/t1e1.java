@@ -35,7 +35,6 @@ public class t1e1 extends AppCompatActivity {
             public void onClick(View view, Producto producto, int cantidad,int totalCantidad) {
                 //Toast.makeText(t1e1.this,"Pulsado: "+producto.getNombre()+" su cantidad es: "+cantidad,Toast.LENGTH_SHORT).show();
                 visorTotal.setText(String.valueOf(totalCantidad));
-                a.notifyDataSetChanged();
             }
         });
     }

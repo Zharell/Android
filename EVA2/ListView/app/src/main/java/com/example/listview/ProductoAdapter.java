@@ -13,7 +13,9 @@ import java.util.Arrays;
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> {
 
     private ArrayList<Producto> datos;
-    private int [] arrCantidad;
+    private ArrayList<Integer> arrCantidadList = new ArrayList<>();
+
+    //Migrar a ArrayList
     private int totalCantidad=0;
 
     /*
@@ -56,11 +58,15 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         @Override
         public void onClick(View view) {
             // Si tengo un manejador de evento lo propago con el índice
-            arrCantidad[getAdapterPosition()]++;
+            arrCantidadList.set(getAdapterPosition(),arrCantidadList.get(getAdapterPosition())+1);
             totalCantidad++;
             if (clickListener != null) {
-                clickListener.onClick(view, datos.get(getAdapterPosition()),arrCantidad[getAdapterPosition()],totalCantidad);
+                clickListener.onClick(view, datos.get(getAdapterPosition()),arrCantidadList.get(getAdapterPosition()),totalCantidad);
             }
+
+            //Notifica los cambios
+            cantidad.setText(arrCantidadList.get(getAdapterPosition())+"");
+
 
         }
     }
@@ -87,7 +93,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         Producto p = datos.get(position);
-        viewHolder.setInfo(p.getNombre(),p.getPrecio(),arrCantidad[position]);
+        viewHolder.setInfo(p.getNombre(),p.getPrecio(),arrCantidadList.get(position));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -98,7 +104,12 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
 
     public void add(ArrayList<Producto> dataSet){
         datos.addAll(dataSet);
-        arrCantidad = new int[datos.size()];
+
+        //Inicializa las posiciones del ArrayList
+        for (int i=0;i<datos.size();i++) {
+            arrCantidadList.add(0);
+        }
+
         notifyDataSetChanged();
     }
 }
