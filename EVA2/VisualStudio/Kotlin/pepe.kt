@@ -13,8 +13,8 @@ fun main() {
 }
 
 fun pruebawhen (colorr: Color): String +
-    when (colorr){
+    when (Color){
         BLUE -> println("azulito")
         ORANGE -> println("naranja")
-        RED -> print("hot")
+        RED -> println("hot")
     }

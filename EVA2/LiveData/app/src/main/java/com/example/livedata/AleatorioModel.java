@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class aleatorioModel extends AppCompatActivity {
+public class AleatorioModel extends AppCompatActivity {
 
     Button EButon;
     TextView SText;
